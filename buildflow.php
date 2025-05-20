@@ -1,31 +1,38 @@
 <?php
 /**
  * Plugin Name: BuildFlow
- * Description: Manage materials, inventory, and batch production for handmade or small-batch goods.
+ * Plugin URI: https://reborncore.com
+ * Description: Inventory and production management system for WooCommerce with recipe, material, and batch tracking.
  * Version: 1.0.0
  * Author: Reborn Core Interactive
- * License: GPL2+
+ * Author URI: https://reborncore.com
+ * License: Proprietary
+ * License URI: https://reborncore.com/license
  * Text Domain: buildflow
+ * Domain Path: /languages
  */
 
 defined('ABSPATH') || exit;
 
-define('BF_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('BUILDFLOW_PRO', true); // Toggle to false if Pro features should be disabled
 
+// Admin Pages
 require_once plugin_dir_path(__FILE__) . 'includes/admin/menu.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/dashboard.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/add-material.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/edit-material.php';
 require_once plugin_dir_path(__FILE__) . 'includes/cpt-batches.php';
 require_once plugin_dir_path(__FILE__) . 'includes/cpt-materials.php';
+
+
+// WooCommerce Integration
 require_once plugin_dir_path(__FILE__) . 'includes/woo/woocommerce-recipe-info.php';
-require_once plugin_dir_path(__FILE__) . 'includes/dashboard-widget.php';
-require_once plugin_dir_path(__FILE__) . 'includes/admin/edit-material.php';
 
-function bf_activate() {
-    bf_register_materials_cpt();
-    flush_rewrite_rules();
+// Load Pro Features if enabled
+if (defined('BUILDFLOW_PRO') && BUILDFLOW_PRO) {
+    $pro_file = plugin_dir_path(__FILE__) . 'includes/pro/pro-batch-reports.php';
+    if (file_exists($pro_file)) {
+        require_once $pro_file;
+    }
 }
-register_activation_hook(__FILE__, 'bf_activate');
-
-function bf_deactivate() {
-    flush_rewrite_rules();
-}
-register_deactivation_hook(__FILE__, 'bf_deactivate');

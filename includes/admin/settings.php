@@ -75,6 +75,13 @@ function bf_render_settings_page() {
 
         <p class="submit"><input type="submit" class="button-primary" value="Save Settings"></p>
     </form>
+
+    <hr>
+    <div style="margin-top: 40px; font-size: 13px; color: #666;">
+        <p><strong>BuildFlow by Reborn Core Interactive</strong></p>
+        <p>Need help? Visit <a href="https://support.reborncore.com" target="_blank">support.reborncore.com</a></p>
+        <p><a href="https://reborncore.com" target="_blank">reborncore.com</a></p>
+    </div>
 </div>
 
 <script>
