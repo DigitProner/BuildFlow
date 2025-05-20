@@ -14,11 +14,10 @@ define('BF_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
 require_once plugin_dir_path(__FILE__) . 'includes/admin/menu.php';
 require_once plugin_dir_path(__FILE__) . 'includes/cpt-batches.php';
-require_once BF_PLUGIN_DIR . 'includes/cpt-materials.php';
-require_once plugin_dir_path(__FILE__) . 'includes/woocommerce-recipe-info.php';
+require_once plugin_dir_path(__FILE__) . 'includes/cpt-materials.php';
+require_once plugin_dir_path(__FILE__) . 'includes/woo/woocommerce-recipe-info.php';
 require_once plugin_dir_path(__FILE__) . 'includes/dashboard-widget.php';
-require_once BF_PLUGIN_DIR . 'includes/admin/edit-material.php';
-require_once BF_PLUGIN_DIR . 'includes/helpers.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/edit-material.php';
 
 function bf_activate() {
     bf_register_materials_cpt();
